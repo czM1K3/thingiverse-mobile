@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:thingiversemobile/models/thingiverse/image.dart';
 import 'package:thingiversemobile/models/thingiverse/model.dart';
 import 'package:thingiversemobile/models/thingiverse/model_detail.dart';
+import 'package:thingiversemobile/config.dart' as config;
 
 class Thingiverse {
   Thingiverse.privateConstructor() {
@@ -17,8 +18,9 @@ class Thingiverse {
   static final Thingiverse _instance = Thingiverse.privateConstructor();
   factory Thingiverse() => _instance;
 
-  Future<List<ThingiverseModel>?> getNewest() async {
-    var url = Uri.parse('$_baseUrl/search?sort=newest&access_token=$_apiKey');
+  Future<List<ThingiverseModel>?> getNewest({int page = 1}) async {
+    var url = Uri.parse(
+        '$_baseUrl/search?sort=newest&page=$page&per_page=${config.pageSize}&access_token=$_apiKey');
     var response = await http.get(url, headers: {
       'Accept': 'application/json',
       'authorization': 'Bearer $_apiKey'
@@ -33,8 +35,9 @@ class Thingiverse {
     return null;
   }
 
-  Future<List<ThingiverseModel>?> getPopular() async {
-    var url = Uri.parse('$_baseUrl/search?sort=popular&access_token=$_apiKey');
+  Future<List<ThingiverseModel>?> getPopular({int page = 1}) async {
+    var url = Uri.parse(
+        '$_baseUrl/search?sort=popular&page=$page&per_page=${config.pageSize}&access_token=$_apiKey');
     var response = await http.get(url, headers: {
       'Accept': 'application/json',
       'authorization': 'Bearer $_apiKey'
