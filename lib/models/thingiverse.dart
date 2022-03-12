@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:thingiversemobile/models/thingiverse/image.dart';
 import 'package:thingiversemobile/models/thingiverse/model.dart';
-import 'package:thingiversemobile/models/thingiverse/modelDetail.dart';
+import 'package:thingiversemobile/models/thingiverse/model_detail.dart';
 
 class Thingiverse {
   Thingiverse.privateConstructor() {
@@ -18,30 +18,32 @@ class Thingiverse {
   factory Thingiverse() => _instance;
 
   Future<List<ThingiverseModel>?> getNewest() async {
-    var url = Uri.parse('$_baseUrl/newest?access_token=$_apiKey');
+    var url = Uri.parse('$_baseUrl/search?sort=newest&access_token=$_apiKey');
     var response = await http.get(url, headers: {
       'Accept': 'application/json',
       'authorization': 'Bearer $_apiKey'
     });
     if (response.statusCode == 200) {
       var decoded = jsonDecode(response.body);
-      var models =
-          (decoded as List).map((e) => ThingiverseModel.fromJson(e)).toList();
+      var models = (decoded["hits"] as List)
+          .map((e) => ThingiverseModel.fromJson(e))
+          .toList();
       return models;
     }
     return null;
   }
 
   Future<List<ThingiverseModel>?> getPopular() async {
-    var url = Uri.parse('$_baseUrl/popular?access_token=$_apiKey');
+    var url = Uri.parse('$_baseUrl/search?sort=popular&access_token=$_apiKey');
     var response = await http.get(url, headers: {
       'Accept': 'application/json',
       'authorization': 'Bearer $_apiKey'
     });
     if (response.statusCode == 200) {
       var decoded = jsonDecode(response.body);
-      var models =
-          (decoded as List).map((e) => ThingiverseModel.fromJson(e)).toList();
+      var models = (decoded["hits"] as List)
+          .map((e) => ThingiverseModel.fromJson(e))
+          .toList();
       return models;
     }
     return null;

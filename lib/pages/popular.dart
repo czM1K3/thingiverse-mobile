@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thingiversemobile/components/modelsList.dart';
+import 'package:thingiversemobile/components/models_list.dart';
 import 'package:thingiversemobile/models/thingiverse.dart';
 import 'package:thingiversemobile/models/thingiverse/model.dart';
 

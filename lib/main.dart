@@ -22,17 +22,17 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: routes.popular,
+      initialRoute: Routes.popular,
       routes: {
-        routes.newest: (context) => const Layout(
+        Routes.newest: (context) => const Layout(
               body: NewestPage(),
               title: "Newest",
             ),
-        routes.popular: (context) => const Layout(
+        Routes.popular: (context) => const Layout(
               body: PopularPage(),
               title: "Popular",
             ),
-        routes.detail: (context) => DetailPage(
+        Routes.detail: (context) => DetailPage(
               arguments: ModalRoute.of(context)?.settings.arguments,
             ),
       },

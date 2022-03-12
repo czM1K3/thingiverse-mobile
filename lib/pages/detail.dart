@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thingiversemobile/components/detail.dart';
 import 'package:thingiversemobile/models/thingiverse.dart';
-import 'package:thingiversemobile/models/thingiverse/modelDetail.dart';
+import 'package:thingiversemobile/models/thingiverse/model_detail.dart';
 
 class DetailPage extends StatelessWidget {
   static const String routeName = "/detail";

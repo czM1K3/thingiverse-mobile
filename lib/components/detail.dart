@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thingiversemobile/models/thingiverse/modelDetail.dart';
+import 'package:thingiversemobile/models/thingiverse/model_detail.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
