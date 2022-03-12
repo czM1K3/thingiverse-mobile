@@ -21,8 +21,10 @@ jobs:
           channel: 'stable'
       - name: "Install dependencies"
         run: flutter pub get
+      - name: "Create .env"
+        run: touch .env
       - name: "Analyze flutter code"
-        run: flutter analyze .
+        run: flutter analyze
       - name: "Build Android app"
         run: flutter build apk --split-per-abi
       
