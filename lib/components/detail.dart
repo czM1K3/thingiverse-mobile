@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thingiversemobile/models/thingiverse/model_detail.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SingleModelDetail extends StatelessWidget {
   const SingleModelDetail({Key? key, required this.model}) : super(key: key);
@@ -51,6 +52,11 @@ class SingleModelDetail extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Html(
               data: model.descriptionHtml,
+              onLinkTap: (url, context, attributes, element) async {
+                if (url != null && await canLaunch(url)) {
+                  await launch(url);
+                }
+              },
             ),
           ),
         ],
